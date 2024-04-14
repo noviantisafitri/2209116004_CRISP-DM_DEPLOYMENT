@@ -1,8 +1,10 @@
 import streamlit as st
-from function import load_data, data_distribution, relation, composition, comparison, visualize_alcohol_consumption, predict_cluster, describe_data, data_storytelling
+from function import load_data, data_distribution, relation, composition, comparison, predict_cluster, data_storytelling
 from streamlit_option_menu import option_menu
 
+
 with st.sidebar:
+
     selected = st.selectbox("Student Alcohol Consumption", ["Home", "Data Visualization", "Predict"])
 
     if selected == "Data Visualization":
@@ -31,10 +33,6 @@ def display_composition():
 def display_comparison():
     df = load_data()
     comparison(df)
-
-def display_data_visualization():
-    df = load_data()
-    visualize_alcohol_consumption(df)
 
 def display_prediction():
     predict_cluster()
