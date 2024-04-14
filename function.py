@@ -22,53 +22,71 @@ def data_storytelling(df):
                 Dalam era di mana tekanan sosial, ekspektasi, dan aksesibilitas alkohol berdampak pada keputusan siswa, 
                 sehingga hal ini menjadi suatu hal yang penting bagi kita untuk memahami faktor-faktor yang terlibat dalam perilaku konsumsi alkohol di kalangan siswa.""")
 
-
-    # Interpretasi
-    st.header("Interpretasi")
-    st.markdown("1. **Usia dan Konsumsi** : Siswa yang lebih tua cenderung memiliki tingkat konsumsi alkohol yang lebih tinggi daripada siswa yang lebih muda.")
-    st.markdown("2. **Perbedaan Gender** : Meskipun terdapat perbedaan antara laki-laki dan perempuan dalam pola konsumsi, trennya menunjukkan bahwa konsumsi alkohol di kalangan siswa laki-laki cenderung lebih tinggi.")
-    st.markdown("3. **Pengaruh Keluarga** : Siswa yang berasal dari lingkungan keluarga di mana pendidikan tentang bahaya alkohol diberikan cenderung memiliki tingkat konsumsi yang lebih rendah.")
-    st.markdown("4. **Tingkat Stres** : Siswa yang mengalami tingkat stres yang tinggi cenderung memiliki kecenderungan yang lebih tinggi untuk mengonsumsi alkohol.")
-
-    # Actionable Insight
-    st.header("Actionable Insight")
-    st.markdown("1. Membuat program pendidikan yang mengedukasi tentang bahaya alkohol dan strategi penanganan stres yang sehat agar dapat membantu mengurangi konsumsi alkohol di kalangan siswa.")
-    st.markdown("2. Melibatkan orang tua dalam mendidik anak-anak mereka tentang bahaya alkohol dan menyediakan lingkungan keluarga yang mendukung dapat membantu mengurangi risiko konsumsi alkohol di kalangan remaja.")
-    st.markdown("3. Membuat sebuah kebijakan yang mengatur aksesibilitas alkohol di sekitar sekolah dan daerah pemukiman yang dapat membantu mengurangi kesempatan siswa untuk mengonsumsi alkohol.")
-
-    st.markdown("Dengan menggunakan pendekatan ini, kita dapat bekerja sama untuk mengurangi tingkat konsumsi alkohol di kalangan siswa dan mendorong perilaku yang lebih sehat dan aman.")
-
-    st.header("Visualisasi Data")
-
-    # Visualisasi distribusi konsumsi alkohol berdasarkan status keluarga
-    family_status_counts = df['Pstatus'].value_counts()
-    plt.figure(figsize=(10, 6))
-    sns.barplot(x=family_status_counts.index, y=family_status_counts.values)
-    plt.title('Distribusi Konsumsi Alkohol Berdasarkan Status Keluarga')
-    plt.xlabel('Status Keluarga')
-    plt.ylabel('Jumlah Siswa')
+    
+    # Visualisasi 1: Usia dan Konsumsi Alkohol
+    plt.figure(figsize=(8, 6))
+    sns.lineplot(data=df, x='age', y='Walc', marker='o', color='blue')
+    plt.title('Hubungan antara Usia dan Konsumsi Alkohol')
+    plt.xlabel('Usia')
+    plt.ylabel('Konsumsi Alkohol')
+    plt.grid(True)
+    plt.show()
     st.pyplot()
 
     st.markdown("""
-                Grafik di atas menampilkan distribusi konsumsi alkohol siswa sekolah menengah berdasarkan status keluarga. 
-                Kita dapat melihat bahwa siswa dari keluarga dengan status cohabitation (Tinggal Bersama) cenderung memiliki tingkat 
-                konsumsi alkohol harian yang lebih tinggi dibandingkan dengan siswa dari keluarga dengan status apart (Tinggal Terpisah).
-                Ini menunjukkan bahwa lingkungan keluarga dapat memengaruhi perilaku konsumsi alkohol siswa.
-    """)
 
-    # Visualisasi hubungan antara konsumsi alkohol dan kinerja akademik
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='G3', y='Dalc', data=df)
-    plt.title('Hubungan antara Konsumsi Alkohol dan Kinerja Akademik')
-    plt.xlabel('Nilai Akhir')
-    plt.ylabel('Konsumsi Alkohol (Harian)')
+            **Interpretasi:**
+            Terdapat hubungan yang jelas antara usia dan tingkat konsumsi alkohol di kalangan siswa. Grafik garis menunjukkan bahwa semakin tua siswa, semakin tinggi kemungkinan mereka untuk mengonsumsi alkohol secara reguler atau dalam jumlah yang lebih besar.
+
+            **Insight:**
+            Siswa yang lebih tua cenderung memiliki tingkat konsumsi alkohol yang lebih tinggi daripada siswa yang lebih muda. Artinya perlu perhatian khusus terhadap siswa yang berusia lebih tua dalam upaya pencegahan konsumsi alkohol di kalangan pelajar.
+
+            **Actionable Insight:**
+            Program pendidikan harus dirancang dengan mempertimbangkan perbedaan dalam konsumsi alkohol berdasarkan usia. Fokuskan upaya pencegahan pada siswa yang lebih tua dan berikan informasi yang sesuai dengan tingkat usia mereka.
+            """)
+
+    # Visualisasi 2: Perbedaan Gender dalam Konsumsi Alkohol
+    plt.figure(figsize=(8, 6))
+    sns.boxplot(data=df, x='sex', y='Walc', palette='Set2')
+    plt.title('Perbedaan Gender dalam Konsumsi Alkohol')
+    plt.xlabel('Gender')
+    plt.ylabel('Konsumsi Alkohol')
+    plt.show()
     st.pyplot()
 
     st.markdown("""
-                Visualisasi di atas menunjukkan hubungan antara konsumsi alkohol harian dan nilai akhir siswa. 
-                Kita dapat melihat adanya kecenderungan bahwa siswa dengan tingkat konsumsi alkohol yang lebih tinggi cenderung memiliki
-                nilai akhir yang lebih rendah. Hal ini menunjukkan adanya hubungan negatif antara konsumsi alkohol dan kinerja akademik.
-    """)
+
+            **Interpretasi:**
+            Data menunjukkan adanya perbedaan dalam pola konsumsi alkohol antara siswa laki-laki dan perempuan. Grafik menunjukkan bahwa konsumsi alkohol cenderung lebih tinggi di kalangan siswa laki-laki.
+
+            **Insight:**
+            Konsumsi alkohol cenderung lebih tinggi di kalangan siswa laki-laki. Hal tersebut mungkin disebabkan oleh faktor sosial, budaya, atau tekanan teman sebaya yang berbeda antara siswa laki-laki dan perempuan.
+
+            **Actionable Insight:**
+            Perlu untuk mengembangkan strategi pencegahan yang spesifik untuk menangani konsumsi alkohol di kalangan siswa laki-laki. Hal ini dapat mencakup program-program yang memahami dan menanggapi faktor-faktor sosial dan budaya yang mempengaruhi keputusan siswa dalam mengonsumsi alkohol.
+            """)
+
+
+    # Visualisasi 3: Tingkat Stres dan Konsumsi Alkohol
+    plt.figure(figsize=(8, 6))
+    sns.barplot(data=df, x='failures', y='Walc', palette='Set2')
+    plt.title('Hubungan antara Tingkat Kegagalan dan Konsumsi Alkohol')
+    plt.xlabel('Tingkat Kegagalan')
+    plt.ylabel('Konsumsi Alkohol')
+    plt.show()
+    st.pyplot()
+
+    st.markdown("""
+
+            **Interpretasi:**
+            Kegagalan dapat menjadi faktor risiko yang signifikan dalam mempengaruhi perilaku konsumsi alkohol di kalangan siswa. Siswa yang mengalami kegagalan mungkin menggunakan alkohol sebagai cara untuk mengatasi atau melarikan diri dari tekanan.
+
+            **Insight:**
+            Data menunjukkan bahwa siswa yang mengalami tingkat kegagalan yang tinggi cenderung memiliki kecenderungan yang lebih tinggi untuk mengonsumsi alkohol.
+
+            **Actionable Insight:**
+            Memperkuat program dan layanan penanganan kegagalan di sekolah. Hal ini dapat mencakup peningkatan akses ke konseling, dukungan emosional, dan pengembangan keterampilan penanganan kegagalan yang tepat.
+            """)
 
 def data_distribution(df) :
     st.header('Data Distribution')
